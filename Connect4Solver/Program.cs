@@ -23,10 +23,7 @@ int GetConnect4Winner(int[][] board)
             // horizontal lookahead from current position
             for (var nextCol = col + 1; nextCol < board[row].Length; nextCol++)
             {
-                if (tokenCount >= 4)
-                {
-                    return startToken;
-                }
+                if (tokenCount >= 4) break;
                 
                 var nextToken = board[row][nextCol];
                 if (nextToken == startToken)
@@ -35,8 +32,31 @@ int GetConnect4Winner(int[][] board)
                 }
                 else
                 {
-                    tokenCount = 0;
+                    tokenCount = 1;
+                    break; // at this point don't need to continue looking
                 }
+            }
+
+            // vertical lookahead
+            for (var nextRow = row + 1; nextRow < board.Length; nextRow++)
+            {
+                if (tokenCount >= 4) break;
+                
+                var nextToken = board[nextRow][col];
+                if (nextToken == startToken)
+                {
+                    tokenCount += 1;
+                }
+                else
+                {
+                    tokenCount = 1;
+                    break; // at this point don't need to continue looking
+                }
+            }
+            
+            if (tokenCount >= 4)
+            {
+                return startToken;
             }
         }
     }
