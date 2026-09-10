@@ -58,6 +58,6 @@ int[][] board3 = [
     [2, 1, 2, 2, 0, 0],
 ];
 
-Console.WriteLine($"Board 1 winner was: {board1}");
-Console.WriteLine($"Board 2 winner was: {board2}");
-Console.WriteLine($"Board 3 winner was: {board3}");
+Console.WriteLine($"Board 1 winner was: {GetConnect4Winner(board1)}");
+Console.WriteLine($"Board 2 winner was: {GetConnect4Winner(board2)}");
+Console.WriteLine($"Board 3 winner was: {GetConnect4Winner(board3)}");
