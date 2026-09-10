@@ -54,6 +54,12 @@ int GetConnect4Winner(int[][] board)
                 }
             }
             
+            // diagonal
+            // now with diagonal, it can go from left to right, or right to left.
+            // \
+            // /
+            // we're gonna start off greedy here, can optimise later to be more lazy based on knowledge like how far we are from start/end vs what directions are realistic
+            
             if (tokenCount >= 4)
             {
                 return startToken;
