@@ -88,10 +88,9 @@ int GetConnect4Winner(int[][] board)
                     if (tokenCount >= requiredTokenCount) break;
                     
                     var nextToken = board[y][x];
-                    Console.Write($"{nextToken}");
                     if (nextToken != startToken)
                     {
-                        Console.WriteLine();
+                        tokenCount = 1;
                         break;
                     }
 
@@ -121,8 +120,6 @@ int GetConnect4Winner(int[][] board)
                 return startToken;
             }
         }
-        
-        Console.WriteLine();
     }
     
     return winner;
@@ -176,7 +173,29 @@ int[][] board3 = [
     [2, 1, 2, 2, 0, 0],
 ];
 
+// * * * * * * *
+// * * * * * * *
+// 2 * 1 * * * *
+// 1 2 2 1 * * *
+// 1 1 2 2 * * *
+// 1 1 1 2 * * *
+int[][] board4 = [
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [2, 0, 1, 0, 0, 0],
+    [1, 2, 2, 1, 0, 0],
+    [1, 1, 2, 2, 0, 0],
+    [1, 1, 1, 2, 0, 0],
+];
 
-// Console.WriteLine($"Board 1 winner was: {GetConnect4Winner(board1)} {GetConnect4Winner(board1) == 1}");
-// Console.WriteLine($"Board 2 winner was: {GetConnect4Winner(board2)} {GetConnect4Winner(board2) == 1}");
+/*
+    Board 1 winner was: 1 True
+    Board 2 winner was: 1 True
+    Board 3 winner was: 2 True
+    Board 4 winner was: 2 True
+ */
+Console.WriteLine($"Board 1 winner was: {GetConnect4Winner(board1)} {GetConnect4Winner(board1) == 1}");
+Console.WriteLine($"Board 2 winner was: {GetConnect4Winner(board2)} {GetConnect4Winner(board2) == 1}");
 Console.WriteLine($"Board 3 winner was: {GetConnect4Winner(board3)} {GetConnect4Winner(board3) == 2}");
+Console.WriteLine($"Board 4 winner was: {GetConnect4Winner(board4)} {GetConnect4Winner(board4) == 2}");
