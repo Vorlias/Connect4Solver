@@ -9,6 +9,7 @@ int GetConnect4Winner(int[][] board)
 {
     const int rowCount = 7;
     const int columnCount = 6;
+    const int requiredTokenCount = 4;
     
     var winner = 0;
     var tokenCount = 0;
@@ -19,6 +20,9 @@ int GetConnect4Winner(int[][] board)
     {
         if (board[row].Length != columnCount) throw new ArgumentException($"Invalid row count, should be {columnCount} for inner array of {nameof(board)}.");
         
+        // If we have less than 4 rows left, then diagonally no winners can happen
+        var canCheckDiagonally = row <= rowCount - requiredTokenCount;
+
         for (var col = 0; col < board[row].Length; col++)
         {
             // the current token we're checking
@@ -30,7 +34,7 @@ int GetConnect4Winner(int[][] board)
             // horizontal lookahead from current position
             for (var nextCol = col + 1; nextCol < board[row].Length; nextCol++)
             {
-                if (tokenCount >= 4) break;
+                if (tokenCount >= requiredTokenCount) break;
                 
                 var nextToken = board[row][nextCol];
                 if (nextToken == startToken)
@@ -47,7 +51,7 @@ int GetConnect4Winner(int[][] board)
             // vertical lookahead
             for (var nextRow = row + 1; nextRow < board.Length; nextRow++)
             {
-                if (tokenCount >= 4) break;
+                if (tokenCount >= requiredTokenCount) break;
                 
                 var nextToken = board[nextRow][col];
                 if (nextToken == startToken)
@@ -66,12 +70,18 @@ int GetConnect4Winner(int[][] board)
             // \
             // /
             // we're gonna start off greedy here, can optimise later to be more lazy based on knowledge like how far we are from start/end vs what directions are realistic
+            if (canCheckDiagonally)
+            {
+                
+            }
             
-            if (tokenCount >= 4)
+            if (tokenCount >= requiredTokenCount)
             {
                 return startToken;
             }
         }
+        
+        Console.WriteLine();
     }
     
     return winner;
@@ -125,6 +135,6 @@ int[][] board3 = [
     [2, 1, 2, 2, 0, 0],
 ];
 
-Console.WriteLine($"Board 1 winner was: {GetConnect4Winner(board1)} {GetConnect4Winner(board1) == 1}");
-Console.WriteLine($"Board 2 winner was: {GetConnect4Winner(board2)} {GetConnect4Winner(board2) == 1}");
+// Console.WriteLine($"Board 1 winner was: {GetConnect4Winner(board1)} {GetConnect4Winner(board1) == 1}");
+// Console.WriteLine($"Board 2 winner was: {GetConnect4Winner(board2)} {GetConnect4Winner(board2) == 1}");
 Console.WriteLine($"Board 3 winner was: {GetConnect4Winner(board3)} {GetConnect4Winner(board3) == 2}");
