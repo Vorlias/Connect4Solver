@@ -7,7 +7,41 @@
 // * * * * * * *
 int GetConnect4Winner(int[][] board)
 {
-    return 0;
+    var winner = 0;
+    var tokenCount = 0;
+    
+    for (var row = 0; row < board.Length; row++)
+    {
+        for (var col = 0; col < board[row].Length; col++)
+        {
+            // the current token we're checking
+            var startToken = board[row][col];
+            if (startToken == 0) continue; // ignore empty spaces
+
+            tokenCount = 1;
+            
+            // horizontal lookahead from current position
+            for (var nextCol = col + 1; nextCol < board[row].Length; nextCol++)
+            {
+                if (tokenCount >= 4)
+                {
+                    return startToken;
+                }
+                
+                var nextToken = board[row][nextCol];
+                if (nextToken == startToken)
+                {
+                    tokenCount += 1;
+                }
+                else
+                {
+                    tokenCount = 0;
+                }
+            }
+        }
+    }
+    
+    return winner;
 }
 
 // * * * * * * *
@@ -58,6 +92,6 @@ int[][] board3 = [
     [2, 1, 2, 2, 0, 0],
 ];
 
-Console.WriteLine($"Board 1 winner was: {GetConnect4Winner(board1)}");
-Console.WriteLine($"Board 2 winner was: {GetConnect4Winner(board2)}");
-Console.WriteLine($"Board 3 winner was: {GetConnect4Winner(board3)}");
+Console.WriteLine($"Board 1 winner was: {GetConnect4Winner(board1)} {GetConnect4Winner(board1) == 1}");
+Console.WriteLine($"Board 2 winner was: {GetConnect4Winner(board2)} {GetConnect4Winner(board2) == 1}");
+Console.WriteLine($"Board 3 winner was: {GetConnect4Winner(board3)} {GetConnect4Winner(board3) == 2}");
