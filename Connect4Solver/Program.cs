@@ -5,6 +5,10 @@
 // * * * * * * *
 // * * * * * * *
 // * * * * * * *
+int GetConnect4Winner(int[][] board)
+{
+    return 0;
+}
 
 // * * * * * * *
 // * * * * * * *
@@ -53,3 +57,7 @@ int[][] board3 = [
     [0, 2, 1, 2, 0, 0],
     [2, 1, 2, 2, 0, 0],
 ];
+
+Console.WriteLine($"Board 1 winner was: {board1}");
+Console.WriteLine($"Board 2 winner was: {board2}");
+Console.WriteLine($"Board 3 winner was: {board3}");
