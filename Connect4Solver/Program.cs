@@ -7,11 +7,18 @@
 // * * * * * * *
 int GetConnect4Winner(int[][] board)
 {
+    const int rowCount = 7;
+    const int columnCount = 6;
+    
     var winner = 0;
     var tokenCount = 0;
+
+    if (board.Length != rowCount) throw new ArgumentException($"Invalid row count, should be {rowCount} for outer array of {nameof(board)}.");
     
     for (var row = 0; row < board.Length; row++)
     {
+        if (board[row].Length != columnCount) throw new ArgumentException($"Invalid row count, should be {columnCount} for inner array of {nameof(board)}.");
+        
         for (var col = 0; col < board[row].Length; col++)
         {
             // the current token we're checking
